@@ -8,20 +8,22 @@ class Solution(object):
         #trips=sorted(trips,key=lambda x: x[1])
         #print(trips)
         
-        d=defaultdict(int)
-
+        #d=defaultdict(int) taking dict means need to sort so list better for TC
+        d=[0]*1001 #constraints 0 <= fromi < toi <= 1000 therefore took 1001 as int list 
         #add at index start and subtract at indexend position   
         for i in trips:
             d[i[1]]+=i[0]
             d[i[2]]-=i[0]
         
         curr,maxcap=0,0
-        for i in sorted(d):
-            curr+=d[i]
-            print(i,curr)
+        #heapq.heapify(d)
+        for i in d:
+            curr+=i
+            #print(i,curr)
             if(curr>maxcap):
                 maxcap=curr
+                if(maxcap>capacity):
+                    return(False)
         print(maxcap)
-        if(maxcap>capacity):
-            return(False)
+        
         return(True)
