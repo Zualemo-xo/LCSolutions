@@ -5,22 +5,23 @@ class Solution(object):
         :type capacity: int
         :rtype: bool
         """
-        trips=sorted(trips,key=lambda x: x[1])
+        #trips=sorted(trips,key=lambda x: x[1])
         #print(trips)
-        maxcap=0
+        
         d=defaultdict(int)
+
+        #add at index start and subtract at indexend position   
         for i in trips:
-            d[i[1]]=0
-            d[i[2]]=0
-        for i in trips:
-            for j in d: 
-                #print(d[j],j)
-                if(i[1]<=j and i[2]>j):
-                    d[j]+=i[0]
-        for i in d:
-            if(d[i]>maxcap):
-                maxcap=d[i]
-        #print(maxcap)
+            d[i[1]]+=i[0]
+            d[i[2]]-=i[0]
+        
+        curr,maxcap=0,0
+        for i in sorted(d):
+            curr+=d[i]
+            print(i,curr)
+            if(curr>maxcap):
+                maxcap=curr
+        print(maxcap)
         if(maxcap>capacity):
             return(False)
         return(True)
