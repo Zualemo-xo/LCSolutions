@@ -13,7 +13,6 @@ class Solution(object):
         :rtype: int
         """
         l=[]
-        ans=-1
         for i in range(0,len(self.nums)):
             if(self.nums[i]==target):
                 l.append(i)
