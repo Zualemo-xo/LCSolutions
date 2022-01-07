@@ -12,12 +12,17 @@ class Solution(object):
         :type target: int
         :rtype: int
         """
-        l=[]
+        # Reservoir Sampling
+        ans=-1
+        scope=1
         for i in range(0,len(self.nums)):
             if(self.nums[i]==target):
-                l.append(i)
-        x=random.randrange(0,len(l))
-        return(l[x])
+                #print(random.random())
+                #print(scope,1.0/scope)
+                if(random.random()<(1.0/scope)): #use float 1.0 not int ffs DAMN
+                    ans=i
+                scope+=1
+        return(ans)
         
 
 
