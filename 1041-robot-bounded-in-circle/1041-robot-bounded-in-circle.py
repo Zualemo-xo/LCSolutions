@@ -1,73 +1,58 @@
-class Solution {
-	// TC: O(len(instructioons))
-	// SC: O(1)
-	private enum Direction {
-		NORTH,
-		SOUTH,
-		WEST,
-		EAST
-	}
-
-	public boolean isRobotBounded(String instructions) {
-		int x = 0, y = 0;// starting
-		Direction direction = Direction.NORTH;
-
-		for (char instruction : instructions.toCharArray()) {
-            System.out.println(direction);
-            System.out.println("W"+x+y);
-			if (instruction == 'G') {
-				switch (direction) {
-					case NORTH:
-						y++;
-						break;
-					case SOUTH:
-						y--;
-						break;
-					case WEST:
-						x--;
-						break;
-					case EAST:
-						x++;
-						break;
-				}
-			} else if (instruction == 'L') {
-				switch (direction) {
-					case NORTH:
-						direction = Direction.WEST;
-						break;
-					case SOUTH:
-						direction = Direction.EAST;
-						break;
-					case WEST:
-						direction = Direction.SOUTH;
-						break;
-					case EAST:
-						direction = Direction.NORTH;
-						break;
-				}
-			} else if (instruction == 'R') {
-				switch (direction) {
-					case NORTH:
-						direction = Direction.EAST;
-						break;
-					case SOUTH:
-						direction = Direction.WEST;
-						break;
-					case WEST:
-						direction = Direction.NORTH;
-						break;
-					case EAST:
-						direction = Direction.SOUTH;
-						break;
-				}
-			}
-		}
-        System.out.println("FFF:"+direction);
-        System.out.println("Wfded"+x+y);
-		if (x == 0 && y == 0) { return true; }
-		if (direction == Direction.NORTH) { return false; }
-
-		return true;
-	}
-
-}
+class Solution(object):
+    def isRobotBounded(self, instructions):
+        """
+        :type instructions: str
+        :rtype: bool
+        """
+        direc='N' #It moves in north/y axis in the start
+        N=['W','E'] #LEFT NA GOES WEST,RIGHT EAST
+        S=['E','W']
+        W=['S','N']
+        E=['N','S']
+        coord=[0,0]
+        for i in instructions:
+            #print(coord)
+            #print(direc)
+            if(direc=='N' and i=='G'):
+                coord[1]+=1
+            elif(direc=='S' and i=='G'):
+                coord[1]-=1
+                
+            elif(direc=='E' and i=='G'):
+                coord[0]+=1
+            elif(direc=='W' and i=='G'):
+                coord[0]-=1
+                
+                
+            if(direc=='N'):
+                if(i=='L'):
+                    direc=N[0]
+                elif(i=='R'):
+                    direc=N[1]
+            
+            elif(direc=='S'):
+                if(i=='L'):
+                    direc=S[0]
+                elif(i=='R'):
+                    direc=S[1]
+                    
+            elif(direc=='W'):
+                if(i=='L'):
+                    direc=W[0]
+                elif(i=='R'):
+                    direc=W[1]
+                    
+            elif(direc=='E'):
+                if(i=='L'):
+                    direc=E[0]
+                elif(i=='R'):
+                    direc=E[1]
+        #print("FIN:",coord,direc)
+        if(coord[0]==0 and coord[1]==0):
+            return(True)
+        if(direc=='N'):
+            return(False)
+        return(True) #all other cases it IT'LL FORM A LOOP IF NOT AT ORIGIN ALSO
+                
+                
+        
