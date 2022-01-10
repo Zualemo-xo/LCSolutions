@@ -1,5 +1,6 @@
 class Solution {
     public String addBinary(String a, String b) {
+        //talk bout pain of doin a diff lang
         char carry='0';
         StringBuffer a1=new StringBuffer(a);
         StringBuffer b1=new StringBuffer(b);
@@ -20,12 +21,12 @@ class Solution {
             int b1l=b1.length();
             int a1l=a1.length();
             for(int i=0;i<b1l-a1l;i++)
-            {a1.append("0");
-                System.out.println("Initialv:"+a1);}
+                a1.append("0");
+
             a1.reverse();
         }
-        System.out.println("Initial:"+a1);
-        System.out.println("Initial:"+b1);
+        //System.out.println("Initial:"+a1);
+        //System.out.println("Initial:"+b1);
         //String c="";
         for(int i=a1.length()-1;i>=0;i--)
         {
@@ -80,7 +81,7 @@ class Solution {
             
             
         }
-        System.out.println("aasw:"+a1);
+        //System.out.println("aasw:"+a1);
         if(carry=='1')
             a1.insert(0,"1");
             //c+="1";
