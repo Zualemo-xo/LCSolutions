@@ -14,7 +14,6 @@
  * }
  */
 class Solution {
-    int sum=0;
     public int helper(TreeNode root,String no){
         if(root==null)
         {
@@ -23,18 +22,13 @@ class Solution {
         no+=root.val;
         if(root.left==null && root.right==null)
         {
-            sum += Integer.parseInt(no, 2);
-            return(0);
+            return(Integer.parseInt(no, 2));
         }
-        helper(root.left,no);
-        helper(root.right,no);
         //System.out.println(sum);
-        return(0);      
+        return(helper(root.left,no)+helper(root.right,no));      
     }
     public int sumRootToLeaf(TreeNode root) {
-        //int no[]=new int[1000];
         String no=new String("");
-        helper(root,no);
-        return(sum);
+        return(helper(root,no));
     }
 }
