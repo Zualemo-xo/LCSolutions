@@ -13,27 +13,27 @@
  *     }
  * }
  */
+//used driver fn itself to get ans instead of defining helper
 class Solution {
     boolean subtree=false;
     TreeNode ans=null;
-    // public TreeNode helper(TreeNode root, int val) {             
-    // }
+
     public TreeNode searchBST(TreeNode root, int val) {
         if(root!=null && subtree==false)
         {
             if(root.val<val)
                 searchBST(root.right,val);
+            
             else if(root.val>val)
                 searchBST(root.left,val);
+            
             else if(root.val==val)
             {
                 ans=root;
                 subtree=true;
-                //return(root);
             }
         }
         
         return(ans);
-        //return(null);
     }
 }
