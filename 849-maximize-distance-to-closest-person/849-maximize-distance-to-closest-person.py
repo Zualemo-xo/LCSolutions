@@ -4,7 +4,7 @@ class Solution:
         sit,prev=0,0
         for i in range(0,len(seats)):
             if( (i-prev>sit and seats[i]==0 and i+1==len(seats) )or (prev==0 and seats[0]==0 and seats[i]==1)):
-                print("ff",i)
+                #print("ff",i)
                 sit=i-prev
                 dist=i-prev
                 prev=i
@@ -16,8 +16,8 @@ class Solution:
                 #print("wtf")
             if(seats[i]==1):
                 prev=i
-            print("SIT:",sit) 
-        print("SITANS:",sit)
+            #print("SIT:",sit) 
+        #print("SITANS:",sit)
         return(sit)
                 
                 
