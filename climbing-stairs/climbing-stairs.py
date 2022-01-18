@@ -1,17 +1,18 @@
-from functools import lru_cache
-@lru_cache(None)
-def helper(n):
-    if(n==-1):
-        return(0)
-    elif(n==0):
-        return(1)
-    return(helper(n-1)+helper(n-2))
 class Solution(object):
     def climbStairs(self, n):
         """
         :type n: int
         :rtype: int
         """
-        x=helper(n)
-        print(helper.cache_info())
-        return(x)
+        # With list based memoization
+        mem=[0]*(n+2)
+        def helper(i):
+            if(mem[i]!=0):
+                return(mem[i])
+            if(i>n):
+                return(0)
+            if(i==n):
+                return(1)
+            mem[i]=helper(i+1)+helper(i+2)
+            return(mem[i])
+        return(helper(0))
