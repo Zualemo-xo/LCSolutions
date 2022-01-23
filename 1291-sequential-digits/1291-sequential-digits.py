@@ -1,19 +1,14 @@
 class Solution:
-    def sequentialDigits(self, low: int, high: int) -> List[int]:
-        ans=[]
-        for i in range(len(str(low)),len(str(high))+1):
-            for j in range(1,10):
-                t=""
-                outt=False
-                for k in range(0,i):
-                    if(j+k>=10):
-                        outt=True
-                        break
-                    t+=str(j+k)
-                if(outt):
-                    break
-                #print(t)
-                if(int(t)>=low and int(t)<=high):
-                    ans.append(int(''.join(t)))
-        return(ans)
+    ##ddbabichev way queue 1..10 then get 12,13, from 1,2 and so on....
+    def sequentialDigits(self, low, high):
+        out = []
+        queue = deque(range(1,10))
+        while queue:
+            elem = queue.popleft()
+            if low <= elem <= high:
+                out.append(elem)
+            last = elem % 10
+            if last < 9: queue.append(elem*10 + last + 1)
                     
+        return out
+        
