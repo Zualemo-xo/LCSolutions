@@ -5,6 +5,7 @@ class Solution(object):
         :type n: int
         :rtype: float
         """
+        # see https://www.youtube.com/watch?v=l0YC3876qxg
         nc=n
         ans=1
         if(n<0):
