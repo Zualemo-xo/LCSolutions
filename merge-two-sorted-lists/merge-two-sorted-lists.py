@@ -17,7 +17,7 @@ class Solution(object):
             print(list1.val,list2.val)
             print(ans)
             if(list1.val>=list2.val):
-                ans.next=ListNode(list2.val)
+                ans.next=list2 #it dosent matter as next values are replaced
                 ans=ans.next
                 list2=list2.next
                 
