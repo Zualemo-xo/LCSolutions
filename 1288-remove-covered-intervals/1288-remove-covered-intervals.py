@@ -1,15 +1,11 @@
-class Solution(object):
-    def removeCoveredIntervals(self, intervals):
-        """
-        :type intervals: List[List[int]]
-        :rtype: int
-        """
-        cnt=0
-        for i in xrange(0,len(intervals)):
-            for j in xrange(0,len(intervals)):
-                #print(intervals[i],intervals[j])
-                if(intervals[j][0]<=intervals[i][0] and intervals[i][1]<=intervals[j][1] and i!=j):
-                    cnt+=1
-                    break
-        return(len(intervals)-cnt)
-        
+class Solution:
+    def removeCoveredIntervals(self, intervals: List[List[int]]) -> int:
+        intervals.sort(key = lambda x:(x[0], -x[1]))
+        last = -1
+        removed = 0
+        for i in intervals:
+            if i[1] <= last:
+                removed += 1
+            else:
+                last = i[1]
+        return len(intervals) - removed
