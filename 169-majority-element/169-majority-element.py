@@ -1,12 +1,16 @@
 class Solution:
     def majorityElement(self, nums: List[int]) -> int:
-        d=defaultdict(int)
-        for i in nums:
-            d[i]+=1
-        maxn,ans=0,0
-        for key,val in d.items():
-            if(val>maxn):
-                maxn=val
-                ans=key
-        return(ans)
-        
+        #Boyer-Moore Voting Algorithm
+        # TC : O(N) SC:O(1)
+        tempmajorityele=nums[0]
+        count=1
+        for i in range(1,len(nums)):
+            if(nums[i]!=tempmajorityele):
+                count-=1
+            else:
+                count+=1
+            if(count==0):
+                tempmajorityele=nums[i]
+                count+=1
+                
+        return(tempmajorityele)
