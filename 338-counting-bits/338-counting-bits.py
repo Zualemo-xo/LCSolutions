@@ -4,13 +4,16 @@ class Solution(object):
         :type n: int
         :rtype: List[int]
         """
-        l=[]
-        for i in range(0,n+1):
-            x=bin(i)[2:]
-            cnt=0
-            for j in x:
-                if(j=="1"):
-                    cnt+=1
-            l.append(cnt)
+        if(n==0):
+            return([0])
+        if(n==1):
+            return([0,1])
+        l=[0,1,1]
+        for i in range(3,n+1):
+            if(i%2!=0): #odd digit -- prev even digit+1 
+                l.append(l[len(l)-1]+1)
+            else: # even nos equivalent to shift of eve/2 digit ,so same 1 count
+                l.append(l[len(l)/2])
         return(l)
+                
         
