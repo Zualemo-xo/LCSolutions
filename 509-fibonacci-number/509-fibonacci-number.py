@@ -4,16 +4,14 @@ class Solution(object):
         :type n: int
         :rtype: int
         """
-        #top down w memoization
-        d=defaultdict(int)
-        def helper(n):
-            if(n==0 or n==1):
-                return(n)
-            if(n in d):
-                return(d[n])
-            else:
-                d[n]=helper(n-1)+helper(n-2)
-            return(d[n])
-        return(helper(n))
+        #bottom up w tabluation
+        if(n==0):
+            return(0)
+        n1,n2=0,1
+        for i in range(2,n+1):
+            temp=n2
+            n2=n1+n2
+            n1=temp
+        return(n2)
             
                 
