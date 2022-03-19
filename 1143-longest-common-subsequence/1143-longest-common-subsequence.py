@@ -7,15 +7,11 @@ class Solution:
                 return(0)
             #choice diag
             if(S1[n]==S2[m]):
-                x=1+helper(n-1,m-1)
-                self.maxn=max(self.maxn,x)
-                return(x)
+                return(1+helper(n-1,m-1))
 
             else:
                 return(max(helper(n-1,m),helper(n,m-1)))
 
         n,m=len(S1),len(S2)   
-        self.maxn=0
-        helper(n-1,m-1)
-        return(self.maxn)
+        return(helper(n-1,m-1))
         
