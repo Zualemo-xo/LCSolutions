@@ -13,8 +13,8 @@ class Solution(object):
             if(k<=25):
                 ans[i]=k+1
                 break
-            ans[i]=26 if k>25 else k
-            k=k-25 if k+1>25 else k
+            ans[i]=26 
+            k=k-25 
             #print(k)  
         #print(ans)
         for i in range(len(ans)):
