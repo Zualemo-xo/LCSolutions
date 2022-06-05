@@ -7,10 +7,7 @@ class Solution(object):
         def backtrack(accumulated_ans,r,c):
             #exit case
             if(r==n):
-                nq=0
-                for row in accumulated_ans:
-                    nq+=sum(row)
-                if(nq==n): # if there are N QUEENS on the board
+                if(1): # There will be N QUEENS on the board by default if we reach this point
                     #build final ans
                     tans=[]
                     for i in accumulated_ans:
@@ -26,11 +23,10 @@ class Solution(object):
                 return
             #chk for col elements for row 'r'    
             for j in range(0,n):
-
                 #Check if adding a Q here will be valid
                 isvalid=True
                 sumz=0
-                sumz+=sum(accumulated_ans[r]) #rowsum
+                #sumz+=sum(accumulated_ans[r]) #rowsum optional 
                 for x in range(0,len(accumulated_ans)):
                     sumz+=accumulated_ans[x][j]     #col sum
                     
@@ -41,8 +37,7 @@ class Solution(object):
                             sumz+=accumulated_ans[x][y]
 
                 if(sumz>0):
-                    isvalid=False
-                    
+                    isvalid=False    
                 #proceed for backtracking based on isvalid
                 if(isvalid):
                         
