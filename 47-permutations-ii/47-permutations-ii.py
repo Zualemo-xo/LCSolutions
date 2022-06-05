@@ -6,8 +6,10 @@ class Solution(object):
         """
         n=len(nums)
         self.ans=[]
+        # whe check and add different positions into curr
         def backtrack(curr,pos):
             #print(curr,pos)
+            #break condition
             if(len(curr)==n):
                 tans=[]
                 for i in curr:
@@ -17,6 +19,7 @@ class Solution(object):
                 return
 
             #while(i%n!=pos%n):
+            #loop from first ele and add if not already a position
             for i in range(0,n):
                 if(i not in curr):
                     #print(i%n,pos%n)
