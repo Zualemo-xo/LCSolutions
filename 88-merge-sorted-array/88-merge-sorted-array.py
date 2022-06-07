@@ -1,26 +1,29 @@
-class Solution:
-    def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
+class Solution(object):
+    def merge(self, nums1, m, nums2, n):
         """
-        Do not return anything, modify nums1 in-place instead.
+        :type nums1: List[int]
+        :type m: int
+        :type nums2: List[int]
+        :type n: int
+        :rtype: None Do not return anything, modify nums1 in-place instead.
         """
-        ans=[]
-        p1,p2=0,0
-        while(p1<m and p2<n):
-            if(nums1[p1]<nums2[p2]):
-                ans.append(nums1[p1])
-                p1+=1
-            else:
-                ans.append(nums2[p2])
-                p2+=1
-        while(p1<m):
-            ans.append(nums1[p1])
-            p1+=1
-        while(p2<n):
-            ans.append(nums2[p2])
-            p2+=1
-            
-        for i in range(0,len(ans)):
-            nums1[i]=ans[i]
-            
+        p1,p2,p3=m-1,n-1,m+n-1
         
-            
+        while(p2>=0 and p1>=0):
+            if(nums1[p1]>nums2[p2]):
+                nums1[p3]=nums1[p1]
+                p3-=1
+                p1-=1
+            else:
+                nums1[p3]=nums2[p2]
+                p3-=1
+                p2-=1
+        while(p2>=0):
+            nums1[p3]=nums2[p2]
+            p2-=1
+            p3-=1
+        while(p1>=0):
+            nums1[p3]=nums1[p1]
+            p1-=1
+            p3-=1
+                
