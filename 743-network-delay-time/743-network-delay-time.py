@@ -1,18 +1,16 @@
 class Solution:
     def networkDelayTime(self, times: List[List[int]], n: int, k: int) -> int:
-        #Bellman Ford
-        #Initialize distance matrix with inf , except for k , which  has 0 .
-        dist=defaultdict(int)
-        for i in range(1,n+1):
-            dist[i]=float("inf")
-        dist[k]=0
-        
+        #Bellman Ford WITH LIST BASED DIST MATRIX
+        dist=[float("inf") for i in range(0,n)]
+        dist[k-1]=0
         for i in range(n-1): #ITERATE N-1 TIMES
             for u,v,wt in times:
-                if(dist[u]+wt<dist[v]):
-                    dist[v]=dist[u]+wt
-        #print(dist)
-        if(max(dist.values())==float("inf")): #Node is to reachable/Not connected
+                if(dist[u-1]+wt<dist[v-1]):
+                    dist[v-1]=dist[u-1]+wt
+
+        #Node is to reachable/Not connected
+        if(max(dist)==float("inf")):
             return(-1)
         else:
+            return(max(dist))
             return(max(dist.values()))
