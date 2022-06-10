@@ -1,7 +1,7 @@
 class Solution:
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
         #TOPO SORT
-        adj_list=[[] for i in range(numCourses)]
+        adj_list=defaultdict(list)
         #outgoing_cnt=defaultdict(int)
         incoming_cnt=defaultdict(int)
         #print(adj_list)
@@ -19,11 +19,11 @@ class Solution:
         ans=[]
         for i in range(numCourses):
             if(i not in incoming_cnt):
-                print(i)
+                #print(i)
                 queue.append(i)
         #Main topo sort processing
         while(len(queue)!=0):
-            print(queue)
+            #print(queue)
             course=queue.popleft()
             for dep in adj_list[course]:
                 incoming_cnt[dep]-=1 #we have visited its prerequesite course , hence remove its incoming connection to 'dep'
