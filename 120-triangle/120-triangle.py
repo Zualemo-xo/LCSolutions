@@ -4,7 +4,6 @@ class Solution:
         self.dp=[]
         for i in t:
             self.dp.append([float("inf")]*len(i))
-        #print(self.dp)
         
         def helper(row,pos):
             if(pos<0 or pos>row):
@@ -21,7 +20,7 @@ class Solution:
             
             
         return(helper(0,0))
-        #x=helper(0,0,0)
-        #print(self.dp)
+
+
 
             
