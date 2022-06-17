@@ -61,4 +61,4 @@ class Solution(object):
             return(temp)
         
         helper(root)
-        return(max(0,self.ans-1))
+        return(max(0,self.ans-1)) #Edge case [] will give -1 
