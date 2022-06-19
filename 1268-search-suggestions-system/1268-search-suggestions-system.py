@@ -1,6 +1,5 @@
 class TrieNode:
-    def __init__(self,char=""):
-        self.char=char
+    def __init__(self):
         self.children={}
         self.is_end=False
         
@@ -18,7 +17,7 @@ class Solution(object):
                 if(letter in node.children):
                     node=node.children[letter]
                 else:
-                    new_node=TrieNode(letter)
+                    new_node=TrieNode()
                     node.children[letter]=new_node #Create new set of children for lettr
                     node=new_node
             node.is_end=True
@@ -53,9 +52,7 @@ class Solution(object):
             #CALL A FN TO SEE WHAT WORDS CAN BE FORMED from current 'node'
             suggestion(node,part_word)
             return
-                        
 
-        
         #Main
         #Insert all words into a trie
         for word in products:
