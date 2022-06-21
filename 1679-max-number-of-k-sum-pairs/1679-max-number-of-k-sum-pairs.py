@@ -1,20 +1,26 @@
-class Solution(object):
-    def maxOperations(self, nums, k):
-        """
-        :type nums: List[int]
-        :type k: int
-        :rtype: int
-        """
-        nums.sort()
-        s,e=0,len(nums)-1
-        cnt=0
-        while(s<e):
-            if(nums[s]+nums[e]>k):
-                e-=1
-            elif(nums[s]+nums[e]<k):
-                s+=1
-            else:
-                cnt+=1
-                s+=1
-                e-=1
-        return(cnt)
+class Solution:
+    def maxOperations(self, nums: List[int], k: int) -> int:
+        d=defaultdict(int)
+        for i in nums:
+            d[i]+=1
+        ans=0
+        print(d)
+        for i in nums:
+            #print(d)
+            if(k-i in d):
+                #print(i,k/2)
+                if(i==k/2):
+                    ans+=math.floor(d[i]/2)
+                    #print(ans)
+                    d[i]=0
+                else:
+                    #print(min(d[i],d[k-i]))
+                    mina=min(d[i],d[k-i])
+                    ans+=mina
+                    d[i]-=mina
+                    d[k-i]-=mina
+                    #print(i,k-i,d[k-i])
+                    #print(ans,i,d[i],k-i,d[k-i])
+
+        return(ans)
+                
