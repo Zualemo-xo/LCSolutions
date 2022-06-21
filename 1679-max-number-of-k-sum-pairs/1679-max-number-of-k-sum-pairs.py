@@ -5,7 +5,7 @@ class Solution:
             d[i]+=1
         ans=0
         print(d)
-        for i in nums:
+        for i in d:
             #print(d)
             if(k-i in d):
                 #print(i,k/2)
