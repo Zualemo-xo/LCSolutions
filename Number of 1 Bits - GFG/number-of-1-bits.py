@@ -4,9 +4,10 @@ class Solution:
 		# code here
 		ans=0
 		while(n!=0):
-		    bit=n%2
+		    #print(n & 1)
+		    bit=n & 1
 		    ans=ans+1 if bit else ans
-		    n//=2
+		    n=n>>1
 		return(ans)   
 
 #{ 
