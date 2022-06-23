@@ -1,6 +1,7 @@
 import heapq
 class Solution:
     def scheduleCourse(self, courses: List[List[int]]) -> int:
+        # PQueue, TC: O(NlogN) SC: O(N) N: courses len
         courses.sort(key=lambda x:x[1]) #Sort by deadline
         selected=[]
         heapq.heapify(selected)
@@ -22,7 +23,7 @@ class Solution:
             elif(len(selected)==0):
                 continue
             largest=heapq.heappop(selected)
-            if(coursetime<=-largest and duration+coursetime-(-largest)<=deadline):
+            if(coursetime<=-largest ):
                 duration=duration-(-largest)+coursetime
                 heapq.heappush(selected,-coursetime)
             else:
