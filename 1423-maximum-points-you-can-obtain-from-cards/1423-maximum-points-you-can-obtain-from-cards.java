@@ -1,38 +1,20 @@
-class Solution(object):
-    def maxScore(self, points, k):
-        """
-        :type cardPoints: List[int]
-        :type k: int
-        :rtype: int
-        """
+class Solution {
+//PREFIX SUM APPROACH
+public int maxScore(int[] cp, int k) {
+    int n = cp.length;
+    int leftsum = 0;
+    for (int i = 0; i < k; i++) {
+        leftsum += cp[i];
+    }
+    int max = leftsum;
+    int rightsum = 0;
 
-        #sliding window of size n-k to see what elements to not consider
-        
-        sw=deque([])
-        maxl=len(points)-k
-        if(maxl==0): #EDGE C
-            return(sum(points))
-        
-        cursum=0
-        minsum=float("inf")
-        for i in range(0,len(points)):
-            if(len(sw)<maxl):
-                sw.append(points[i])
-                cursum+=points[i]
-                
-            elif(len(sw)==maxl):
-                minsum=min(cursum,minsum)
-                ele=sw.popleft()
-                cursum-=ele
-                sw.append(points[i])
-                cursum+=points[i]
-                
-        minsum=min(cursum,minsum)
-        return(sum(points)-minsum)
-                
-                
-            
-        
-        
-        
-        
+    for (int i = 0; i < k; i++) {
+        leftsum  -= cp[k - 1 - i];
+        rightsum += cp[n - 1 - i];
+        max = Math.max(max, leftsum + rightsum);
+    }
+
+    return max;
+}
+}
