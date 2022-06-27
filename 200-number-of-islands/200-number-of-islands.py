@@ -4,7 +4,7 @@ class Solution(object):
         :type grid: List[List[str]]
         :rtype: int
         """
-        # Union Find & find no of connected components
+        # Union Find (with rank and path compression) & find no of connected components
         adj=set()
         graph=[]
         cnt=0
@@ -43,13 +43,16 @@ class Solution(object):
         #Apply union find to newly created adj list
         
         self.parent=defaultdict(int)
+        self.rank=defaultdict(int)
         self.cnt=0 
         def initialize(n):
             for i in range(n):
                 self.parent[i]=i
-               
+                self.rank[i]=0
+        
         def getAbsoluteParent(u):
             if(u!=self.parent[u]):
+                #Path compression
                 self.parent[u]=getAbsoluteParent(self.parent[u])
                 return(self.parent[u])
             return(u)
@@ -57,9 +60,14 @@ class Solution(object):
         def union(u,v):
             AbsoluteParentu=getAbsoluteParent(u)
             AbsoluteParentv=getAbsoluteParent(v)
-            #Assign based on bigger union
-            if(AbsoluteParentu!=AbsoluteParentv):
+            #Assigning based on Rank 
+            if(AbsoluteParentu>AbsoluteParentv):
                 self.parent[AbsoluteParentv]=AbsoluteParentu
+            elif(AbsoluteParentu<AbsoluteParentv):
+                self.parent[AbsoluteParentu]=AbsoluteParentv
+            else: # When rank is equal , increase rank of either of chosen node
+                self.parent[AbsoluteParentv]=AbsoluteParentu
+                self.rank[AbsoluteParentu]+=1
 
         
         initialize(cnt)
