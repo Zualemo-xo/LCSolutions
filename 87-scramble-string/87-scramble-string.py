@@ -1,6 +1,6 @@
 class Solution:
     def isScramble(self, s1: str, s2: str) -> bool:
-        # MC W DICT MEMOIZATION
+        # MC W DICT MEMOIZATION & Pruning
         self.memo=defaultdict(bool)
         def solve(a,b):
             # Base conditions
@@ -12,6 +12,14 @@ class Solution:
             #Memo
             key=a+" "+b #Create unique key to be checked/stored in dictionary
             if(key in self.memo): #Return precomputed value
+                return(self.memo[key])
+            
+            #Pruning
+            x=sorted(a)
+            y=sorted(b)
+            #print(x,y)
+            if(x!=y): #In case 2 strings have different characters, they can never be equal
+                self.memo[key]=False
                 return(self.memo[key])
             
             # MCM
