@@ -1,16 +1,19 @@
 class Solution:
     def isScramble(self, s1: str, s2: str) -> bool:
-        # MC W CACHE MEMOIZATION
-        @cache
+        # MC W DICT MEMOIZATION
+        self.memo=defaultdict(bool)
         def solve(a,b):
             # Base conditions
 
             if(a==b):
-                print("vf")
                 return(True)
-            elif(len(a)==0 or len(b)==0):
-                return(False)
-
+            # elif(len(a)==0 or len(b)==0):
+            #     return(False)
+            #Memo
+            key=a+" "+b #Create unique key to be checked/stored in dictionary
+            if(key in self.memo): #Return precomputed value
+                return(self.memo[key])
+            
             # MCM
             flag=False
             n=len(a)
@@ -24,7 +27,8 @@ class Solution:
                 if(solve(a[:i],b[:i])==True and solve(a[i:],b[i:])==True):
                     flag=True
                     break
-            return(flag)
+            self.memo[key]=flag
+            return(self.memo[key])
                 
         
         
