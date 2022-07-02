@@ -1,21 +1,20 @@
-class Solution:
-    def uniquePaths(self, m: int, n: int) -> int:
-        #Memo TC:O(M*N) SC:O((M*N)+m-1+n-1)
-        memo=[[-1 for i in range(n)] for j in range(m) ]
-        def solve(m,n):
-            #Base 
-            if(memo[m][n]!=-1):
-                return(memo[m][n])
-            if(m<0 or n<0 ):
-                return(0)
-            elif(m==0 and n==0):
-                return(1)
-            
-            up=solve(m-1,n)
-            left=solve(m,n-1)
-            ans=up+left
-            memo[m][n]=ans
-            return(memo[m][n])
-            
-            
-        return(solve(m-1,n-1))
+class Solution(object):
+    def uniquePaths(self, m, n):
+        """
+        :type m: int
+        :type n: int
+        :rtype: int
+        """
+        #Bottum Up
+        #Memo TC:O(M*N) SC:O((M*N))
+        dp=[[0 for i in range(n+1)] for j in range(m+1) ]
+        for i in range(0,m):
+            for j in range(0,n):
+                if(i==0 or j==0):
+                    dp[i][j]=1
+                else:
+                    dp[i][j]=dp[i-1][j]+dp[i][j-1]
+        return(dp[i][j])
+                    
+        
+        
