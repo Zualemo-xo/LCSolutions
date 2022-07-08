@@ -1,7 +1,9 @@
 class Solution:
     def minCost(self, houses: List[int], cost: List[List[int]], m: int, n: int, target: int) -> int:
+        #TC: O(m.t.n.n) 1 n extra for loop inside fn , SC: O( m.t.n)
         # m- no of houses , n - no of paint available cost[i]= [paint1cost,paint2cost,...]
-        @cache
+        #memo[target][color][pos]
+        memo=[[[-1 for i in range(m+1)] for j in range(n+1)] for j in range(target+1)]
         def dp(targetleft,prevcolor,position):
             #base
             if(targetleft<0):
@@ -12,7 +14,9 @@ class Solution:
                     return(0)
                 else:
                     return(float("inf"))
-
+            #memoization
+            if(memo[targetleft][prevcolor][position]!=-1):
+                return(memo[targetleft][prevcolor][position])
             tmp=float("inf")
             if(houses[position]!=0): # If house is already painted, do not repaint
                     #print("KCOC:",position,houses[position])
@@ -28,7 +32,8 @@ class Solution:
                         tmp=min( tmp,cost[position][color-1]+dp(targetleft,prevcolor,position+1) )
                     else:
                         tmp=min( tmp,cost[position][color-1]+dp(targetleft-1,color,position+1) )
-            #print(tmp)
+            
+            memo[targetleft][prevcolor][position]=tmp
             return(tmp)
                 
             
