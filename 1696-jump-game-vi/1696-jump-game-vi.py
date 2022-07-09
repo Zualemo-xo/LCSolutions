@@ -1,24 +1,21 @@
-import heapq
+
 class Solution:
     def maxResult(self, nums: List[int], k: int) -> int:
-        # Using Heap TC: O(N.log(K)) SC: O(K)
-        l=[ [-nums[0],0] ] #Maxheap
-        #      value,index
-        heapq.heapify(l)
+        # Using Monotonic Queue TC: O(N) SC: O(N)
+        q=deque( [0] ) #Monotonic queue stored in lowest to highest index
+        dp=[nums[0]] #Storing final answer
         
         for i in range(1,len(nums)):
-            while(True):
-                ele=heapq.heappop(l)
-                if(ele[1]<i-k): #This ele is out of range hence its val cannot be considered
-                    continue
-                heapq.heappush( l,[ele[0]-nums[i],i] )
-                heapq.heappush( l,ele )
-                break
-        
-        #print(l)
-        while(True):
-            ele=heapq.heappop(l)
-            if(ele[1]!=len(nums)-1): #This ele is not last ele
-                    continue
-            else:
-                return(-ele[0])
+            #print(q,dp)
+            cnt=0
+            while(q[cnt]<i-k): #pop all elements not falling within the range
+                ele=q.popleft()
+                
+            dp.append( dp[q[0]]+nums[i] )
+            #pop indices which won't be ever chosen in the future, as our new dp is greater than those old dp elements
+            while(len(q)!=0 and dp[q[-1]] <= dp[-1]):
+                q.pop()
+            q.append( i )
+            
+        #print(q,dp)
+        return(dp[-1])
