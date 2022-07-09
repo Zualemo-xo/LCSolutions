@@ -1,7 +1,7 @@
 import heapq
 class Solution:
     def maxResult(self, nums: List[int], k: int) -> int:
-        # TC: O(N.log(K)) SC: O(K)
+        # Using Heap TC: O(N.log(K)) SC: O(K)
         l=[ [-nums[0],0] ] #Maxheap
         #      value,index
         heapq.heapify(l)
