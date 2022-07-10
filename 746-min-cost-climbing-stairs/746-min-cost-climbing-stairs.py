@@ -4,19 +4,16 @@ class Solution(object):
         :type cost: List[int]
         :rtype: int
         """
-        # Memization TC: O(N) SC:O(N)
+        # Botom Up TC: O(N) SC:O(N)
         n=len(cost)
-        self.memo=[-1 for i in range(n+1)]
-        def dp(pos):
-            if(pos>=n):
-                return(0)
-            if(self.memo[pos]!=-1):
-                return(self.memo[pos])
-            x=cost[pos]+min(dp(pos+1),dp(pos+2))
-            self.memo[pos]=x
-            return(x)
-        
-        ans=min(dp(0),dp(1))
+        dp=[0 for i in range(n)]
+        dp[0]=cost[0]
+        dp[1]=cost[1]
+        for i in range(2,n):
+            dp[i]=cost[i]+min(dp[i-1],dp[i-2])
+            
+
+        ans=min(dp[i],dp[i-1])
         return(ans)
     
     
