@@ -13,12 +13,14 @@ class Solution(object):
                 adj[u].append(v)
                 adj[v].append(u) # Undirected graph
         
+        
         low=[float("inf")]*n
         discovery=[float("inf")]*n
         visited=[False]*n
         parent=[-1]*n
         self.time=0
         ans=[]
+        
         def bridge_dfs(node):
             self.time+=1
             visited[node]=True
@@ -43,7 +45,7 @@ class Solution(object):
         for i in range(0,n):
             if(visited[i]==False):
                 bridge_dfs(i)
-        print(parent,low,discovery)
+        #print(parent,low,discovery)
         return(ans)
         
         
