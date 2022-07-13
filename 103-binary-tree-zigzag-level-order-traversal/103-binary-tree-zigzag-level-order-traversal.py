@@ -10,24 +10,25 @@ class Solution(object):
         :type root: TreeNode
         :rtype: List[List[int]]
         """
-        if(root==None):
-            return([])
-        q=[]
-        ans=[]
-        q.append(root)
-        level=1
-        while(len(q)):
-            li=[]
-            for i in range(0,len(q)):
-                t=q.pop(0)
-                #print(t.val)
-                li.append(t.val)
-                if(t.left!=None):
-                    q.append(t.left)
-                if(t.right!=None):
-                    q.append(t.right)
+        #TC,SC: O(N)
+        #Idea : DFS, Based on qsn condition modify the condition to add into ans array
+        ans=deque([])
+
+        def dfs(node,level):
             
-            ans.append(li[::level])
-            level *= (-1)
+            if(node):
+                #print(level,node.val,len(ans))
+                if(len(ans)==level): 
+                    ans.append(deque([]))
+                if(level%2!=0):
+                    ans[level].appendleft(node.val)
+                else:
+                    ans[level].append(node.val)
+                #print(ans)
+                dfs(node.left,level+1)
+                dfs(node.right,level+1)
+                #print(ans,level,len(ans))
+                
+        dfs(root,0)
         return(ans)
             
