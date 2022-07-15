@@ -4,7 +4,7 @@ class Solution(object):
         :type grid: List[List[int]]
         :rtype: int
         """
-        # TC: O(M*N) 
+        # TC: O(M*N) SC:O(M*N)
         def isvalid(u,v):
             if(u>=0 and v>=0 and u<len(grid) and v<len(grid[0]) and grid[u][v]!=0 and (u,v) not in visited):
                 return(True)
