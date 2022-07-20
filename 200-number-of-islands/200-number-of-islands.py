@@ -61,9 +61,9 @@ class Solution(object):
             AbsoluteParentu=getAbsoluteParent(u)
             AbsoluteParentv=getAbsoluteParent(v)
             #Assigning based on Rank 
-            if(AbsoluteParentu>AbsoluteParentv):
+            if(self.rank[AbsoluteParentu]>self.rank[AbsoluteParentv]):
                 self.parent[AbsoluteParentv]=AbsoluteParentu
-            elif(AbsoluteParentu<AbsoluteParentv):
+            elif(self.rank[AbsoluteParentu]<self.rank[AbsoluteParentv]):
                 self.parent[AbsoluteParentu]=AbsoluteParentv
             else: # When rank is equal , increase rank of either of chosen node
                 self.parent[AbsoluteParentv]=AbsoluteParentu
