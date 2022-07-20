@@ -4,7 +4,7 @@ class Solution(object):
         :type grid: List[List[str]]
         :rtype: int
         """
-        # Union Find (with rank and path compression) & find no of connected components
+        # Union Find (with rank and path compression) & find no of connected components TC: O(M) WHERE M-NO OF CALLS TO UNION
         adj=set()
         graph=[]
         cnt=0
