@@ -19,4 +19,4 @@ class Solution(object):
             dp[i]=max(dp[i-1],dp[i-2]+totnums[i]) #either select this no and combine with i-2 or select i-1 and not consider current no 'i'.
         #print(dp)
         #print(totnums)
-        return(dp[-1])
+        return(dp[i])
