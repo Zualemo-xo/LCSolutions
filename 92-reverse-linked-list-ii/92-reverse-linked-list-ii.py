@@ -35,6 +35,6 @@ class Solution(object):
                 else:
                     curr=curr.next
         return(head)
-        
-
             
+        
+        
