@@ -6,7 +6,7 @@ class Solution(object):
         :type k: int
         :rtype: int
         """
-        #TC: O(N^3 log(N)) SC:O(N^2)
+        #TC: O(N^2 log(N)) SC:O(N^2)
         l=[]
         for i in matrix:
             for j in i:
