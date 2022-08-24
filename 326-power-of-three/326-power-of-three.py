@@ -1,9 +1,6 @@
-class Solution(object):
-    def isPowerOfThree(self, n):
-        """
-        :type n: int
-        :rtype: bool
-        """
-        if n < 1: return False
-        ans = log(n, 3)
-        return abs(ans - round(ans)) < 1e-10
+class Solution:
+    def isPowerOfThree(self, n: int) -> bool:
+        power=round( log(sys.maxsize,3) ) 
+        maxval=3**power
+        print(maxval%27)
+        return(n>0 and maxval%n==0)
