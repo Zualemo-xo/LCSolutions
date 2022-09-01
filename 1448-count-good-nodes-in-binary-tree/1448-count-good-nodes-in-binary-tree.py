@@ -10,15 +10,15 @@ class Solution(object):
         :type root: TreeNode
         :rtype: int
         """
-        self.ans=0
         def helper(maxval,node):
             if(node==None):
-                return
+                return(0)
             else:
                 if(maxval<=node.val):
-                    self.ans+=1
-                helper(max(maxval,node.val),node.left)
-                helper(max(maxval,node.val),node.right)
-        helper(root.val,root)
-        return(self.ans)
+                    return(1+helper(node.val,node.left)+helper(node.val,node.right))
+                else:
+                    return(helper(maxval,node.left)+helper(maxval,node.right))
+                
+        return( helper(root.val,root) )
+
         
